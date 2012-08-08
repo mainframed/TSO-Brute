@@ -17,14 +17,15 @@
 |_______/ |__/  |__/ \______/    |__/   |________/
 						
 						Eh TSO Brutus?                                            
-						By: @mainframed767
+						By: Soldier of Fortran
+						    (@mainframed767)
 
 TSO Brute - The z/OS TSO/E logon panel brute forcer.
 
 Because the logon panel for TSO/E tells you if you have a valid user account vs a valid/invalid password, you can enumerate users. Since you can enumerate users adding a brute forcer was trivial. 
 
 This script has two modes:
-	- User Enumeration: Given a flat file of usernames it will try to use thos usernames to log in. It will keep track of valid usernames and print them all out at the end. TSO only allows characters A-z, 0-9, @, # and $ in its username. Additionally a username cannot start with a number and it must be seven characters or less. This script will skip items that would be invalid TSO ids. You do not need to provide a password file if you're using this mode. 
+	- User Enumeration: Given a flat file of usernames it will try to use those usernames to log in. It will keep track of valid usernames and print them all out at the end. TSO only allows characters A-z, 0-9, @, # and $ in its username. Additionally a username cannot start with a number and it must be seven characters or less. This script will skip items that would be invalid TSO ids. You do not need to provide a password file if you're using this mode. 
 	- Brute Forcer: The brute forcer does the same as the enumerator except it requires a flat file of passwords to use. The same rules for passwords apply except it can start with a number and has a max length of eight instead of seven. This is the default mode of the script. 
 
 This program makes use of x3270 and s3270 to perform much of the heavy lifting, using py3270 (included with this script). 
@@ -54,15 +55,15 @@ Arguments:
   -q, --quiet           Only display found users / found passwords
 
 Linux Users:
-	To use this script you'll need to install s3270/x3270 to /usr/bin. On Debian (or other OSes that user apt, like Ubuntu) you'll need to install s3270 and x3270. You can easily install each like so:
+	To use this script you'll need to install s3270/x3270 to /usr/bin. On Debian (or other OSes that user apt, like Ubuntu) you can easily install each like so:
 		sudo apt-get install s3270 x3270
-	once installed it should work just fine.
+once installed it should work just fine.
 
 Mac Users:
-	Included on github is the pre-compiled s3270/x3270 for Mac OS X Lion (available from http://x3270.bgp.nu/download.html). 
+	Included on github is the pre-compiled s3270/x3270 for Mac OS X Lion (source available from http://x3270.bgp.nu/download.html). 
 
 Windows Users:
-	Currentlty Windows is unsupported but I hope to implent it sooner rather than later
+	Currentlty Windows is unsupported but I hope to implement it sooner rather than later
 
 Known Issues:
 	If an account is locked out it may report it as password found. This is due to me not having access to a locked out account, yet. 
