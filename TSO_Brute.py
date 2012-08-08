@@ -32,8 +32,8 @@ if platform.system() == 'Darwin':
 		s3270_executable = 'MAC_Binaries/s3270'
 elif platform.system() == 'Linux':
 	class Emulator(EmulatorBase):
-		x3270_executable = 'x3270' #uncomment this line if you do not wish to use x3270 on Linux
-		s3270_executable = 's3270' #this assumes s3270 is in your $PATH. If not then you'll have to change it
+		x3270_executable = '/usr/bin/x3270' #uncomment this line if you do not wish to use x3270 on Linux
+		s3270_executable = '/usr/bin/s3270' #this assumes s3270 is in your $PATH. If not then you'll have to change it
 
 else:
 	print "Your Platform:", platform.system(), 'is not supported at this time. Windows support should be available soon'
