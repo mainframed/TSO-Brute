@@ -139,7 +139,7 @@ if not em.is_connected():
 print '[+]--------------- Getting to TSO/E Logon Panel'
 connect = Get_TSO_PANEL()
 #make sure we're actually at the TSO logon screen
-if not em.string_found(06, 20, 'TSO/E LOGON'):
+if not em.string_found(01, 34, 'TSO/E LOGON'):
 	sys.exit('[!]--------------- Not at TSO/E Logon screen. Aborting.')
 
 print '                  |- At TSO/E Logon Panel'
