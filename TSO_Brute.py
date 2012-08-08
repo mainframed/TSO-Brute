@@ -36,7 +36,7 @@ elif platform.system() == 'Linux':
 		s3270_executable = '/usr/bin/s3270' #this assumes s3270 is in your $PATH. If not then you'll have to change it
 
 else:
-	sys.exit('[!]--------------- Your Platform:', platform.system(), 'is not supported at this time. Windows support should be available soon'
+	sys.exit('[!]--------------- Your Platform:', platform.system(), 'is not supported at this time. Windows support should be available soon')
 
 
 def Get_TSO_PANEL():
