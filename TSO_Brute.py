@@ -18,15 +18,27 @@ import time #needed for sleep
 import sys 
 import argparse #needed for argument parsing
 import re #needed for regular expression (usnername and password checks)
+import platform #needed for OS check
 
 
 #################################
 ##### The location of the x3270 and s3270 programs
 ##### If you don't want to install x3270 just comment out the line below that starts with x3270_executable (and don't use movie mode)
 #################################
-class Emulator(EmulatorBase):
-	x3270_executable = '3270_Clients/bin/x3270' #uncomment this line if you do not wish to use x3270
-	s3270_executable = '3270_Clients/s3270'
+
+if platform.system() == 'Darwin':
+	class Emulator(EmulatorBase):
+		x3270_executable = 'MAC_Binaries/x3270'
+		s3270_executable = 'MAC_Binaries/s3270'
+elif platform.system() == 'Linux':
+	class Emulator(EmulatorBase):
+		x3270_executable = 'x3270' #uncomment this line if you do not wish to use x3270 on Linux
+		s3270_executable = 's3270' #this assumes s3270 is in your $PATH. If not then you'll have to change it
+
+else:
+	print "Your Platform:", platform.system(), 'is not supported at this time. Windows support should be available soon'
+	abort()
+
 
 def Get_TSO_PANEL():
 	#################################
@@ -88,6 +100,8 @@ print '[+]--------------- Username File       =', results.userfile
 userfile=open(results.userfile) #open the usernames file
 if not results.enumeration: print '[+]--------------- Password Listing    =', results.passfile
 print '[+]--------------- Wait in Seconds     =', results.sleep
+print '[+]--------------- Attack platform     =', platform.system() 
+
 
 if not results.passfile and not results.enumeration: #A pssword file is required if we're not in enumeration mode
 	sys.exit("[!]--------------- Not in Enumeration mode (-e). Password file (-p) required! Aborting")

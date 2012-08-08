@@ -1,0 +1,5 @@
+
+
+On Debian (or it's sibling, like Ubuntu) you'll need to install s3270 and (optionally, but I recommend it) x3270. You can easily install each like so:
+	sudo apt-get install s3270 x3270
+once installed it should word just fine
