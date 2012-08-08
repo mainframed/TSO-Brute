@@ -49,18 +49,17 @@ def Get_TSO_PANEL():
 	#################################
 	em.send_enter()
 	em.send_string('TSO') #Sends 'tso' to the screen to launch TSO. The first and second number are where the cursor goes, the 'tso' is the text to send 
-	em.exec_command('PrintText(html,tso_screen.html)')
+	#em.exec_command('PrintText(html,tso_screen.html)')
 	em.send_enter() #presses 'enter' on the keyboard
-	em.exec_command('PrintText(html,tso_screen.html)')
+	#em.exec_command('PrintText(html,tso_screen.html)')
 	time.sleep(results.sleep) #sleeps, because generally mainframes take a while to process these things
 	#em.exec_command('string(TSOFAKE)')
 	em.exec_command('Wait(InputField)')
 	em.send_string('TSOFAKE') #This is the user ID we pass to TSO the first time you logon. You can change this to whatever you like, but it must be less than 7 characters long and it MUST be an invalid TSO user. 
-	em.exec_command('PrintText(html,tso_screen.html)')
+	#em.exec_command('PrintText(html,tso_screen.html)')
 	time.sleep(results.sleep)
 	em.send_enter() 
-	em.exec_command('PrintText(html,tso_screen.html)')
-	
+	#em.exec_command('PrintText(html,tso_screen.html)')
 	#################################
 	##### AT THIS POINT WE'RE AT THE LOGON PROMPT
 	##### READY TO START BRUTE FORCING / ENUMERATING
