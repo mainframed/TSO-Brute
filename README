@@ -63,7 +63,7 @@ Mac Users:
 	Included on github is the pre-compiled s3270/x3270 for Mac OS X Lion (source available from http://x3270.bgp.nu/download.html). 
 
 Windows Users:
-	Currentlty Windows is unsupported but I hope to implement it sooner rather than later
+	Windows support is in Alpha state using WC3270.exe. Getting to the TSO/E logon panel has been sporadic. 
 
 Known Issues:
 	If an account is locked out it may report it as password found. This is due to me not having access to a locked out account, yet. 
