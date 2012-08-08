@@ -65,21 +65,29 @@ def Connect_to_ZOS():
 
 print '''
 
-       dMMMMMMP .dMMMb  .aMMMb
-         dMP   dMP" VP dMP"dMP
-        dMP    VMMMb  dMP dMP
-       dMP   dP .dMP dMP.aMP
-      dMP    VMMMP"  VMMMP"
-
-      dMMMMb  dMMMMb  dMP dMP dMMMMMMP dMMMMMP
-     dMP"dMP dMP.dMP dMP dMP    dMP   dMP
-    dMMMMK" dMMMMK" dMP dMP    dMP   dMMMP
-   dMP.aMF dMP"AMF dMP.aMP    dMP   dMP
-  dMMMMP" dMP dMP  VMMMP"    dMP   dMMMMMP
+ /$$$$$$$$ /$$$$$$   /$$$$$$                      
+|__  $$__//$$__  $$ /$$__  $$                     
+   | $$  | $$  \__/| $$  \ $$                     
+   | $$  |  $$$$$$ | $$  | $$                     
+   | $$   \____  $$| $$  | $$                     
+   | $$   /$$  \ $$| $$  | $$                     
+   | $$  |  $$$$$$/|  $$$$$$/                     
+   |__/   \______/  \______/                      
+                                   
+ /$$$$$$$  /$$$$$$$  /$$   /$$ /$$$$$$$$ /$$$$$$$$
+| $$__  $$| $$__  $$| $$  | $$|__  $$__/| $$_____/
+| $$  \ $$| $$  \ $$| $$  | $$   | $$   | $$      
+| $$$$$$$ | $$$$$$$/| $$  | $$   | $$   | $$$$$   
+| $$__  $$| $$__  $$| $$  | $$   | $$   | $$__/   
+| $$  \ $$| $$  \ $$| $$  | $$   | $$   | $$      
+| $$$$$$$/| $$  | $$|  $$$$$$/   | $$   | $$$$$$$$
+|_______/ |__/  |__/ \______/    |__/   |________/
+						
+						Eh TSO Brutus?                                            
+						By: @mainframed767
 
 
 '''
-
 #start argument parser
 parser = argparse.ArgumentParser(description='TSO Brute - The z/OS TSO/E logon panel brute forcer.',epilog='Eh TSO Brutus?')
 parser.add_argument('-t','--target', help='target IP address or Hostname and port: TARGET[:PORT] default port is 23', required=True,dest='target')
