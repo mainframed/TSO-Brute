@@ -21,7 +21,7 @@
 
 TSO Brute - The z/OS TSO/E logon panel brute forcer.
 
-Because the logon panel for TSO/E tells you if you have a valid user accounts, vs a valid/invalid password, one can use this to enumerate users. Since you can enumerate users adding a brute forcer was trivial. 
+Because the logon panel for TSO/E tells you if you have a valid user account vs a valid/invalid password, you can enumerate users. Since you can enumerate users adding a brute forcer was trivial. 
 
 This script has two modes:
 	- User Enumeration: Given a flat file of usernames it will try to use thos usernames to log in. It will keep track of valid usernames and print them all out at the end. TSO only allows characters A-z, 0-9, @, # and $ in its username. Additionally a username cannot start with a number and it must be seven characters or less. This script will skip items that would be invalid TSO ids. You do not need to provide a password file if you're using this mode. 
@@ -31,9 +31,9 @@ This program makes use of x3270 and s3270 to perform much of the heavy lifting, 
 
 In addtion to the two modes there's some extra settings you can pass are movie mode (lets you see whats happening in real time using x3270) and quiet mode which turns off all the notifications of invalid userids and only displays valid Usernames/passwords. 
 
-
+!!!!!!!!
 One key change that MUST be made to the script is within the function Get_TSO_PANEL(). This section of the script is used to get to the TSO/E logon panel with an invalid user ID. This is really easy in some environments (simply typing 'tso' at the first screen and passing a bad user will do it) to more involved in other environments. You will most certainly have to change this section of the script before being able to use. Future versions might make this a seperate file but as it stands you'll need to edit this script to tailor it to your environment. 
-
+!!!!!!!!
 
 Arguments:
   -h, --help            show the help message and exits
@@ -53,9 +53,6 @@ Arguments:
                         mode
   -q, --quiet           Only display found users / found passwords
 
-
-
-
 Linux Users:
 	To use this script you'll need to install s3270/x3270 to /usr/bin. On Debian (or other OSes that user apt, like Ubuntu) you'll need to install s3270 and x3270. You can easily install each like so:
 		sudo apt-get install s3270 x3270
@@ -66,7 +63,6 @@ Mac Users:
 
 Windows Users:
 	Currentlty Windows is unsupported but I hope to implent it sooner rather than later
-
 
 Known Issues:
 	If an account is locked out it may report it as password found. This is due to me not having access to a locked out account, yet. 
