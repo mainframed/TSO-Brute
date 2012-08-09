@@ -98,18 +98,24 @@ To enumerate users and then brute force the password for the found user ID, usin
 Different Operating Systems
 ---------------------------
 #####Linux Users:
-	To use this script you'll need to install s3270/x3270 to /usr/bin. On Debian (or other OSes that user apt, like Ubuntu) you can easily install each like so:
+	To use this script you'll need to install s3270/x3270 to /usr/bin. 
+	On Debian (or other OSes that user apt, like Ubuntu) you can easily 
+	install each like so:
 		sudo apt-get install s3270 x3270
 	once installed it should work just fine.
 
 #####Mac Users:
-	Included on github is the pre-compiled s3270/x3270 for Mac OS X Lion (source available from http://x3270.bgp.nu/download.html). 
+	Included on github is the pre-compiled s3270/x3270 for 
+	Mac OS X Lion (source available from http://x3270.bgp.nu/download.html). 
 
 #####Windows Users:
-	Windows support is in Alpha state using WC3270.exe. Getting to the TSO/E logon panel has been sporadic. Testers welcome. 
+	Windows support is in Alpha state using WC3270.exe. Getting to 
+	the TSO/E logon panel has been sporadic. Testers welcome. 
 
 Known Issues:
 -------------
-	- If an account is locked out it may report it as password found. This is due to me not having access to a locked out account, yet. 
+	- If an account is locked out it may report it as password found. This is 
+	due to me not having access to a locked out account, yet. 
 	
-	- There's one peice left to implement: keeping track of how many invalid logon attempts until an account got locked and stopping from exceeding that value.  
+	- There's one peice left to implement: keeping track of how many invalid 
+	logon attempts until an account got locked and stopping from exceeding that value.  
