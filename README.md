@@ -39,10 +39,11 @@ The script comes 2 cosmetic modes modes:
 
 	- Movie Mode: In this mode you can watch script typing 
 	commands in a 3270 emulator in real time. Its just like
-	 watching a cheesy movie! You
+	 watching a cheesy movie! You can enambale this mode by 
+	typing --moviemode or -m 
 
 	- Quiet mode: In this mode only valid Usernames/passwords
-	are printed to the screen. 
+	are printed to the screen. Enabled by typing -q or --quiet
 
 MUST CHANGE
 -----------
