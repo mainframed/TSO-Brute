@@ -1,27 +1,7 @@
-   /$$$$$$$$ /$$$$$$   /$$$$$$                      
-  |__  $$__//$$__  $$ /$$__  $$                     
-     | $$  | $$  \__/| $$  \ $$                     
-     | $$  |  $$$$$$ | $$  | $$                     
-     | $$   \____  $$| $$  | $$                     
-     | $$   /$$  \ $$| $$  | $$                     
-     | $$  |  $$$$$$/|  $$$$$$/                     
-     |__/   \______/  \______/                      
-                                   
-   /$$$$$$$  /$$$$$$$  /$$   /$$ /$$$$$$$$ /$$$$$$$$
-  | $$__  $$| $$__  $$| $$  | $$|__  $$__/| $$_____/
-  | $$  \ $$| $$  \ $$| $$  | $$   | $$   | $$      
-  | $$$$$$$ | $$$$$$$/| $$  | $$   | $$   | $$$$$   
-  | $$__  $$| $$__  $$| $$  | $$   | $$   | $$__/   
-  | $$  \ $$| $$  \ $$| $$  | $$   | $$   | $$      
-  | $$$$$$$/| $$  | $$|  $$$$$$/   | $$   | $$$$$$$$
-  |_______/ |__/  |__/ \______/    |__/   |________/
-						
-						Eh TSO Brutus?                                            
-						By: Soldier of Fortran
-						    (@mainframed767)
-
 TSO Brute - The z/OS TSO/E logon panel brute forcer.
 -----------------------------------------------------
+By: Soldier of Fortran
+Twitter: @mainframed767
 
 Because the logon panel for TSO/E tells you if you have a valid user account vs a 
 valid/invalid password, you can enumerate users. Since you can enumerate users 
