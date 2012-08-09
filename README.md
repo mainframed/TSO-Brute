@@ -1,6 +1,7 @@
 TSO Brute - The z/OS TSO/E logon panel brute forcer.
 -----------------------------------------------------
 By: Soldier of Fortran
+
 Twitter: @mainframed767
 
 Because the logon panel for TSO/E tells you if you have a valid user account vs a 
@@ -12,6 +13,7 @@ Modes
 -----
 
 This script has two modes:
+
 	- User Enumeration: Given a flat file of usernames it 
 	will try to use those usernames to log in. It will keep 
 	track of valid usernames and print them all out at the 
@@ -34,6 +36,7 @@ using py3270 (included with this script).
 
 
 The script comes 2 cosmetic modes modes:
+
 	- Movie Mode: In this mode you can watch script typing 
 	commands in a 3270 emulator in real time. Its just like
 	 watching a cheesy movie! You
@@ -43,11 +46,13 @@ The script comes 2 cosmetic modes modes:
 
 MUST CHANGE
 -----------
-!!!!!!!!
+###!!!!!!!!
+
 One key change that MUST be made to the script is within the function Get_TSO_PANEL(). This section of the script is used to get to the TSO/E logon panel with an invalid user ID. This is really easy in some environments (simply typing 'tso' at the first screen and passing a bad user will do it) to more involved in other environments. You will most certainly have to change this section of the script before being able to use it. Future versions might make this a seperate file but as it stands you'll need to edit this script to tailor it to your environment. 
 
 For debugging purposes I've left commented commands to write the screens to an HTML file if you're using a headless server. If you have X access simply use movie mode for debugging. 
-!!!!!!!!
+
+###!!!!!!!!
 
 Using TSO Brute
 ---------------
@@ -55,21 +60,28 @@ Using TSO Brute
 
 Arguments:
   -h, --help            show the help message and exits
+
   -t, --target TARGET
                         Required: target IP address or Hostname and port: TARGET[:PORT]
                         default port is 23
+
   -s, --sleep SLEEP
                         Seconds to sleep between actions (increase on slower
                         systems). The default is 1 second. If you find the keyboard 
 			lock error occurring make this higher (to 4 or 5 seconds)
+
   -u, --userfile USERFILE
                         Required: File containing list of usernames
+
   -p, --passfile PASSFILE
                         File containing list of passwords
+
   -m, --moviemode       Enables ULTRA AWESOME Movie Mode. Watch the system get
                         hacked in real time!
+
   -e, --enumerate       Enables Enumeration Mode Only. Default is brute force
                         mode
+
   -q, --quiet           Only display found users / found passwords
 
 
@@ -86,25 +98,18 @@ To enumerate users and then brute force the password for the found user ID, usin
 Different Operating Systems
 ---------------------------
 #####Linux Users:
-	To use this script you'll need to install s3270/x3270 to /usr/bin. 
-	On Debian (or other OSes that user apt, like Ubuntu) you can easily 
-	install each like so:
+	To use this script you'll need to install s3270/x3270 to /usr/bin. On Debian (or other OSes that user apt, like Ubuntu) you can easily install each like so:
 		sudo apt-get install s3270 x3270
 	once installed it should work just fine.
 
 #####Mac Users:
-	Included on github is the pre-compiled s3270/x3270 for Mac OS X Lion 
-	(source available from http://x3270.bgp.nu/download.html). 
+	Included on github is the pre-compiled s3270/x3270 for Mac OS X Lion (source available from http://x3270.bgp.nu/download.html). 
 
 #####Windows Users:
-	Windows support is in Alpha state using WC3270.exe. Getting to the 
-	TSO/E logon panel has been sporadic. Testers welcome. 
+	Windows support is in Alpha state using WC3270.exe. Getting to the TSO/E logon panel has been sporadic. Testers welcome. 
 
 Known Issues:
 -------------
-	- If an account is locked out it may report it as password found. This 
-	is due to me not having access to a locked out account, yet. 
+	- If an account is locked out it may report it as password found. This is due to me not having access to a locked out account, yet. 
 	
-	- There's one peice left to implement: keeping track of how many invalid 
-	logon attempts until an account got locked and stopping from exceeding 
-	that value.  
+	- There's one peice left to implement: keeping track of how many invalid logon attempts until an account got locked and stopping from exceeding that value.  
