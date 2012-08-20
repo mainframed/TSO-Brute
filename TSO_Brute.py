@@ -197,6 +197,8 @@ for username in userfile:
 							valid_password = True
 							break
 				passfile.close()
+			if not valid_password and not results.enumeration: print '                    -> [!] No Valid Passwords in', results.passfile
+
 			#Since TSO locks the panel, we need to exit and get back
 			if not valid_password: 
 				em.send_pf3() #send F3 which exits TSO
