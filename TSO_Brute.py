@@ -20,7 +20,24 @@ import argparse #needed for argument parsing
 import re #needed for regular expression (usnername and password checks)
 import platform #needed for OS check
 
-
+print '\033[91m'
+print ",!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!."
+print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+print "!!!!'                                                  `!!!!"
+print "!!!!      This script is old, busted and has been       !!!!"
+print "!!!!       replaced. Please use Psikotik instead.       !!!!"
+print "!!!!       \033[94mhttps://github.com/mainframed/psikotik\033[91m       !!!!"
+print "!!!!.                                                  ,!!!!"
+print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+print "`!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'"
+print '\033[0m'
+sleep = 10
+print "Sleeping for ",sleep
+time.sleep(sleep)
 #################################
 ##### The location of the x3270 and s3270 programs
 ##### If you don't want to install x3270 just comment out the line below that starts with x3270_executable (and don't use movie mode)
